@@ -4,7 +4,7 @@ use Moo;
 use WebService::Site24x7::Client;
 use WebService::Site24x7::Reports;
 
-our $VERSION = "0.01";
+our $VERSION = "0.02";
 
 has auth_token        => (is => 'rw', required => 1);
 has user_agent_header => (is => 'rw');
