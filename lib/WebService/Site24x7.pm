@@ -3,6 +3,8 @@ package WebService::Site24x7;
 use Moo;
 use WebService::Site24x7::Client;
 use WebService::Site24x7::Reports;
+use WebService::Site24x7::Monitors;
+use WebService::Site24x7::LocationProfiles;
 
 our $VERSION = "0.03";
 
@@ -23,13 +25,22 @@ sub _build_client {
     return $client;
 }
 
-has reports => (is => 'lazy');
+has reports           => (is => 'lazy');
+has monitors          => (is => 'lazy');
+has location_profiles => (is => 'lazy');
 
-sub _build_reports { WebService::Site24x7::Reports->new(client => shift) }
+sub _build_reports           { WebService::Site24x7::Reports->new(client => shift) }
+sub _build_monitors          { WebService::Site24x7::Monitors->new(client => shift) }
+sub _build_location_profiles { WebService::Site24x7::LocationProfiles->new(client => shift) }
 
-sub monitors {
-    my ($self) = @_;
-    my $res = $self->get('/monitors');
+sub current_status {
+    my ($self, %args) = @_;
+    my $path = "/current_status";
+    $path .= "/$args{monitor_id}"     if $args{monitor_id};
+    $path .= "/group/$args{group_id}" if $args{group_id};
+    $path .= "/type/$args{type}"      if $args{type};
+
+    my $res = $self->get($path);
     return $res->data;
 }
 
@@ -51,9 +62,14 @@ WebService::Site24x7 - An api client for https://site24x7.com
         user_agent_header => 'mybot v1.0',
     );
 
-    my $res = $site24x7->monitors;
+    my $res = $site24x7->monitors->list;
     for my $monitor (@{ $res->{data} }) {
         print $monitor->{display_name}, "\n";
+    }
+
+    my $res = $site24x7->location_profiles->list;
+    for my $location_profile (@{ $res->{data} }) {
+        print $location_profile->{profile_name}, "\n";
     }
 
     my $res = $site24x7->reports->log_reports($monitor_id, date => $date);
