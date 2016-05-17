@@ -2,6 +2,9 @@ Revision history for Perl extension WebService-Site24x7
 
 {{$NEXT}}
 
+0.03 2016-05-17T13:33:25Z
+    - Fixed: was dying when user set user_agent_header attribute.
+
 0.02 2016-05-17T13:22:00Z
     - Skip most tests so install doesn't fail when token environment variable
       doesn't exist.
