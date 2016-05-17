@@ -1,12 +1,13 @@
 use strict;
 use warnings;
-use Test::More skip_all => 'Site24x7 account required';
+use Test::More;# skip_all => 'Site24x7 account required';
 use WebService::Site24x7;
 use DateTime;
 
 my $res;
 my $site24x7 = WebService::Site24x7->new(
-    auth_token => $ENV{WEBSERVICE_SITE24X7_AUTH_TOKEN},
+    auth_token        => $ENV{WEBSERVICE_SITE24X7_AUTH_TOKEN},
+    user_agent_header => 'boop',
 );
 
 note "monitors";

@@ -6,7 +6,7 @@ with 'Role::REST::Client';
 
 has version               => (is => 'rw', required => 1);
 has auth_token            => (is => 'rw', required => 1);
-has user_agent_header     => (is => 'lazy');
+has user_agent_header     => (is => 'rw', lazy => 1, builder => 1);
 has '+server'             => (builder => 1, lazy => 1);
 has '+persistent_headers' => (default => \&_build_persistent_headers);
 
