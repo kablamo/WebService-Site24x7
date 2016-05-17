@@ -62,23 +62,23 @@ WebService::Site24x7 - An api client for https://site24x7.com
         user_agent_header => 'mybot v1.0',
     );
 
-    my $res = $site24x7->monitors->list;
-    for my $monitor (@{ $res->{data} }) {
-        print $monitor->{display_name}, "\n";
-    }
+    # All methods return a $response hashref which contains the jason response
 
-    my $res = $site24x7->location_profiles->list;
-    for my $location_profile (@{ $res->{data} }) {
-        print $location_profile->{profile_name}, "\n";
-    }
+    $site24x7->current_status;
+    $site24x7->current_status(monitor_id => $monitor_id);
+    $site24x7->current_status(group_id => $group_id);
+    $site24x7->current_status(type => $type);
 
-    my $res = $site24x7->reports->log_reports($monitor_id, date => $date);
-    print $res->{data}->{report}->{dns_time}, "\n";
+    $site24x7->monitors->list;
+
+    $site24x7->location_profiles->list;
+
+    $site24x7->reports->log_reports($monitor_id, date => $date);
 
 =head1 DESCRIPTION
 
-WebService::Site24x7 is an api client for https://site24x7.com.  Its currently
-implements a really really limited subset of all the endpoints though.
+WebService::Site24x7 is an api client for https://site24x7.com.  It currently
+implements a really limited subset of all the endpoints though.
 
 =head1 LICENSE
 
