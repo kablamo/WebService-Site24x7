@@ -1,5 +1,5 @@
 {
-   "abstract" : "It's new $module",
+   "abstract" : "An api client for https://site24x7.com",
    "author" : [
       "Eric Johnson <eric.git@iijo.org>"
    ],
@@ -42,6 +42,7 @@
       },
       "runtime" : {
          "requires" : {
+            "Role::REST::Client" : "0",
             "perl" : "5.008001"
          }
       },
@@ -52,6 +53,17 @@
       }
    },
    "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/kablamo/WebService-Site24x7/issues"
+      },
+      "homepage" : "https://github.com/kablamo/WebService-Site24x7",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/kablamo/WebService-Site24x7.git",
+         "web" : "https://github.com/kablamo/WebService-Site24x7"
+      }
+   },
    "version" : "0.01",
    "x_authority" : "cpan:KABLAMO"
 }
