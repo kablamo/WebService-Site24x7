@@ -21,13 +21,18 @@ WebService::Site24x7 - An api client for https://site24x7.com
     $site24x7->monitors->list;
 
     $site24x7->location_profiles->list;
+    $site24x7->location_template;  # get a list all locations
 
     $site24x7->reports->log_reports($monitor_id, date => $date);
 
 # DESCRIPTION
 
-WebService::Site24x7 is an api client for https://site24x7.com.  It currently
-implements a really limited subset of all the endpoints though.
+WebService::Site24x7 is an api client for [https://site24x7.com](https://site24x7.com).  It
+currently implements a really limited subset of all the endpoints though.
+
+# SEE ALSO
+
+[https://www.site24x7.com/help/api/index.html](https://www.site24x7.com/help/api/index.html)
 
 # LICENSE
 

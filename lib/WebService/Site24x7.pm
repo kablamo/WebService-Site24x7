@@ -6,7 +6,7 @@ use WebService::Site24x7::Reports;
 use WebService::Site24x7::Monitors;
 use WebService::Site24x7::LocationProfiles;
 
-our $VERSION = "0.04";
+our $VERSION = "0.05";
 
 has auth_token        => (is => 'rw', required => 1);
 has user_agent_header => (is => 'rw');
