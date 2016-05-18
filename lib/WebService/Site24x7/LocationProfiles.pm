@@ -6,8 +6,7 @@ has client => (is => 'rw', required => 1, handles => [qw/get/]);
 
 sub list {
     my ($self) = @_;
-    my $res = $self->get('/location_profiles');
-    return $res->data;
+    return $self->get('/location_profiles')->data;
 }
 
 1;

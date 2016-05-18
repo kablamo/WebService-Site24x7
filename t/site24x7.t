@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More skip_all => 'Site24x7 account required';
+use Test::More;# skip_all => 'Site24x7 account required';
 use WebService::Site24x7;
 use DateTime;
 
@@ -39,6 +39,12 @@ $res = $site24x7->location_profiles->list;
 is $res->{message}, "success", "message: success";
 is $res->{code}, 0, "code: 0";
 ok scalar @{ $res->{data} } >= 1, "found at least one monitor";
+
+note "location_template";
+$res = $site24x7->location_template;
+is $res->{message}, "success", "message: success";
+is $res->{code}, 0, "code: 0";
+ok $res->{data}->{locations}, "found locations";
 
 note "log_reports";
 # time zone must match the one set in the website's preferences

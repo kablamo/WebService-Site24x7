@@ -33,15 +33,18 @@ sub _build_reports           { WebService::Site24x7::Reports->new(client => shif
 sub _build_monitors          { WebService::Site24x7::Monitors->new(client => shift) }
 sub _build_location_profiles { WebService::Site24x7::LocationProfiles->new(client => shift) }
 
+sub location_template {
+    my ($self, %args) = @_;
+    return $self->get("/location_template")->data;
+}
+
 sub current_status {
     my ($self, %args) = @_;
     my $path = "/current_status";
     $path .= "/$args{monitor_id}"     if $args{monitor_id};
     $path .= "/group/$args{group_id}" if $args{group_id};
     $path .= "/type/$args{type}"      if $args{type};
-
-    my $res = $self->get($path);
-    return $res->data;
+    return $self->get($path)->data;
 }
 
 1;
@@ -72,13 +75,18 @@ WebService::Site24x7 - An api client for https://site24x7.com
     $site24x7->monitors->list;
 
     $site24x7->location_profiles->list;
+    $site24x7->location_template;  # get a list all locations
 
     $site24x7->reports->log_reports($monitor_id, date => $date);
 
 =head1 DESCRIPTION
 
-WebService::Site24x7 is an api client for https://site24x7.com.  It currently
-implements a really limited subset of all the endpoints though.
+WebService::Site24x7 is an api client for L<https://site24x7.com>.  It
+currently implements a really limited subset of all the endpoints though.
+
+=head1 SEE ALSO
+
+L<https://www.site24x7.com/help/api/index.html>
 
 =head1 LICENSE
 
