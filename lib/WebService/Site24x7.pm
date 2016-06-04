@@ -78,6 +78,11 @@ WebService::Site24x7 - An api client for https://site24x7.com
     $site24x7->location_template;  # get a list all locations
 
     $site24x7->reports->log_reports($monitor_id, date => $date);
+    $site24x7->reports->performance($monitor_id,
+        location_id => $location_id,
+        granularity => $granularity,
+        period      => $period,
+    );
 
 =head1 DESCRIPTION
 

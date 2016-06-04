@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More skip_all => 'Site24x7 account required';
+use Test::More;# skip_all => 'Site24x7 account required';
 use WebService::Site24x7;
 use DateTime;
 
@@ -55,5 +55,19 @@ is $res->{code},    0,                      "code: 0";
 ok $res->{data}->{headers},                 "found headers";
 ok $res->{data}->{report},                  "found report";
 ok scalar @{ $res->{data}->{report} } >= 1, "found at least one result";
+
+note "performance reports";
+my $monitors = $site24x7->monitors->list->{data};
+my ($monitor) = grep { $_->{type} =~ /HOMEPAGE/ } @$monitors;
+$res = $site24x7->reports->performance($monitor->{monitor_id},
+    locations => 1,
+    granularity => 5,
+    period => 8,
+);
+is $res->{message}, "success", "message: success";
+is $res->{code},    0,         "code: 0";
+ok $res->{data}->{chart_data}, "found chart_data";
+ok $res->{data}->{info},       "found info"; 
+ok $res->{data}->{table_data}, "found table dasta"; 
 
 done_testing;

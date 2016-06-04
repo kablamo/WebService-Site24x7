@@ -12,4 +12,12 @@ sub log_reports {
     )->data;
 }
 
+sub performance {
+    my ($self, $monitor_id, %params) = @_;
+    return $self->get(
+        "/reports/performance/${monitor_id}",
+        \%params,
+    )->data;
+}
+
 1;
