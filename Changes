@@ -2,6 +2,9 @@ Revision history for Perl extension WebService-Site24x7
 
 {{$NEXT}}
 
+0.06 2016-06-04T23:45:04Z
+    - Added $site24x7->reports->performance
+
 0.05 2016-05-18T16:49:44Z
     - Added $site24x7->location_template which provides
       a way to map location ids to location names.
