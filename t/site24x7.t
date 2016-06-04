@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More;# skip_all => 'Site24x7 account required';
+use Test::More skip_all => 'Site24x7 account required';
 use WebService::Site24x7;
 use DateTime;
 
